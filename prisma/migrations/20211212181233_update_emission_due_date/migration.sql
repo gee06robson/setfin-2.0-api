@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "documents" ALTER COLUMN "emission" SET DATA TYPE DATE,
+ALTER COLUMN "due_date" SET DATA TYPE DATE;

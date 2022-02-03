@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id               @default(uuid())
+  name          String
+  email         String    @unique
+  google_id     String    @unique           
+  image_url     String    
+  administrator Boolean   @default(false)
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt       @default(now())
+  unity         Unity?    @relation(fields: [unit_id], references: [id])
+  unit_id       String?
+
+  documents   UnityOnDocuments[]
+  @@map("users")
+}
+
+model Creditor {
+  id          String    @id              @default(uuid())
+  name        String
+  code        String
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt       @default(now())
+
+  documents   Document[]
+  @@map("creditors")
+}
+
+model Unity {
+  id          String     @id             @default(uuid())
+  name        String
+  status      Boolean    @default(false)
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt      @default(now())
+
+  users       User[]
+  documents   UnityOnDocuments[]
+  
+  @@map("units")
+}
+
+model Document {
+  id          String   @id                                                @default(uuid())
+  creditor    Creditor @relation(fields: [creditor_id], references: [id], onDelete: Cascade)
+  creditor_id String
+  number      String
+  emission    DateTime  @db.Timestamp()
+  due_date    DateTime? @db.Timestamp()
+  value       Decimal   @db.Money
+  status      Boolean   @default(false)
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt                                        @default(now())
+
+  units       UnityOnDocuments[]
+  taxes       TaxesDocuments[]
+  @@map("documents")
+}
+
+
+model UnityOnDocuments {
+  unity       Unity     @relation(fields: [unit_id],    references: [id], onDelete: Cascade)
+  unit_id     String
+  document    Document  @relation(fields: [document_id], references: [id], onDelete: Cascade)
+  document_id  String 
+  included_in DateTime  @default(now())
+  user        User      @relation(fields: [assigned_by], references: [id])
+  assigned_by String
+  status      Boolean   @default(false)
+
+  @@id([unit_id, document_id, assigned_by])
+}
+
+model Taxe {
+  id   String  @id           @default(uuid())
+  code String
+  p_a  Decimal @db.Decimal(5, 2)
+
+  documents TaxesDocuments[]
+  @@map("taxes")
+}
+
+model TaxesDocuments {
+  document          Document  @relation(fields: [document_id],  references: [id], onDelete: Cascade)
+  document_id       String
+  taxe              Taxe      @relation(fields: [taxe_id],      references: [id], onDelete: Cascade)
+  taxe_id           String 
+  calculation_basis Decimal   @db.Money
+  code              String
+  p_a               Decimal   @db.Decimal(5, 2)
+  correction        Decimal   @db.Money @default(0.00)
+  amount            Decimal   @db.Money @default(0.00)
+
+  @@id([document_id, taxe_id])
+}
