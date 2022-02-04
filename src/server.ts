@@ -14,4 +14,6 @@ app.use(express.json())
 app.use(router)
 app.use(handleErrors.handle)
 
-app.listen(process.env.SERVER_PORT || 4000)
+app.listen(process.env.SERVER_PORT || 4000, () => {
+  console.log(["API-FINANCEIRO"], [`ACCESSIBLE AT DOOR ${process.env.SERVER_PORT}`])
+})

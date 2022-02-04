@@ -28,7 +28,7 @@ interface ITicket {
 
 class AuthenticateUserService {
   async execute(credential: string) {
-    const client = new OAuth2Client(process.env.CLIENT_ID, process.env.CLIENT_SECRET_ID)
+    const client = new OAuth2Client(process.env.CLIENT_ID)
     
     const ticket = await client.verifyIdToken({
       idToken: credential,
