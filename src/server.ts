@@ -15,5 +15,5 @@ app.use(router)
 app.use(handleErrors.handle)
 
 app.listen(process.env.PORT || 4000, () => {
-  console.log(["API-FINANCEIRO"], [`ACCESSIBLE AT DOOR ${process.env.SERVER_PORT}`])
+  console.log(["API-FINANCEIRO"], [`ACCESSIBLE AT DOOR ${process.env.PORT}`])
 })
