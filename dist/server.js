@@ -15,7 +15,6 @@ app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(routes_1.router);
 app.use(handleErrors.handle);
-app.listen(process.env.SERVER_PORT);
-// app.listen(process.env.SERVER_PORT || 4000, () => {
-//   console.log(["API-FINANCEIRO"], [`ACCESSIBLE AT DOOR ${process.env.SERVER_PORT}`])
-// })
+app.listen(process.env.PORT || 4000, function () {
+    console.log(["API-FINANCEIRO"], ["ACCESSIBLE AT DOOR " + process.env.SERVER_PORT]);
+});
