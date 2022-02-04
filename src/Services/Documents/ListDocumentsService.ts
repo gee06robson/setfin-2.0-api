@@ -43,6 +43,7 @@ class ListDocumentsService {
       
       if (e instanceof Prisma.PrismaClientKnownRequestError) {
         console.log(e.message, e.code)
+        throw new Error(`${e.code} - ${e.message}`)
       }
 
       throw e

@@ -16,16 +16,6 @@ app.use(express.json())
 app.use(router)
 app.use(handleErrors.handle)
 
-app.use(express.static(__dirname + '/Public'))
-app.get('/', (req, res) => {
-  res.sendFile('index.html')
-})
-
-app.get("/callbacksuccess", (req, res) => {
-  console.log("teste")
-})  
-
-
 app.listen(process.env.SERVER_PORT, () => {
   console.log([
     [`The server is running on the port ${process.env.SERVER_PORT}`], 
