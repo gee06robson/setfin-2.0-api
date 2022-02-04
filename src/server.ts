@@ -1,13 +1,11 @@
 import express from "express"
 import "express-async-errors"
 import { router } from "./routes"
-import * as dotenv from "dotenv"
+import 'dotenv/config'
 import cors from "cors"
 import { HandleErrors } from "./Errors"
 
 const handleErrors = new HandleErrors()
-
-dotenv.config()
 
 const app = express()
 
