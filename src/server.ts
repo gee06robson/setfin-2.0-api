@@ -16,9 +16,4 @@ app.use(express.json())
 app.use(router)
 app.use(handleErrors.handle)
 
-app.listen(process.env.SERVER_PORT, () => {
-  console.log([
-    [`The server is running on the port ${process.env.SERVER_PORT}`], 
-    ["API FINANCEIRO"]
-  ])
-})
+app.listen(process.env.SERVER_PORT || 4000)
