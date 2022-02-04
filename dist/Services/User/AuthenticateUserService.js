@@ -52,7 +52,7 @@ var AuthenticateUserService = /** @class */ (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        client = new google_auth_library_1.OAuth2Client(process.env.CLIENT_ID, process.env.CLIENT_SECRET_ID);
+                        client = new google_auth_library_1.OAuth2Client(process.env.CLIENT_ID);
                         return [4 /*yield*/, client.verifyIdToken({
                                 idToken: credential,
                                 audience: process.env.CLIENT_ID
