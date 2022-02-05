@@ -40,12 +40,15 @@ class CreateDocumentServcice {
     if(unit_id === undefined) {
       throw new Error("usuário não vinculado a uma unidade")
     }
-
+    
     emission = HandleDate(emission)
+    console.log(emission)
 
     if(compareAsc(parseISO(emission), new Date()) === 1) {
       throw new Error("a data de emissão não pode ser posterior à data atual")
     }
+
+    console.log(emission)
 
 
     if(due_date) {
