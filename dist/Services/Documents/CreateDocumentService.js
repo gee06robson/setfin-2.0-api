@@ -64,11 +64,9 @@ var CreateDocumentServcice = /** @class */ (function () {
                             throw new Error("usuário não vinculado a uma unidade");
                         }
                         emission = (0, ultils_1.HandleDate)(emission);
-                        console.log(emission);
                         if ((0, date_fns_1.compareAsc)((0, date_fns_1.parseISO)(emission), new Date()) === 1) {
                             throw new Error("a data de emissão não pode ser posterior à data atual");
                         }
-                        console.log(emission);
                         if (due_date) {
                             due_date = (0, ultils_1.HandleDate)(due_date);
                             if ((0, compareDesc_1.default)((0, date_fns_1.parseISO)(emission), (0, date_fns_1.parseISO)(due_date)) !== 1) {

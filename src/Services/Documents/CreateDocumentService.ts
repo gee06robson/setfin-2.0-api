@@ -42,14 +42,10 @@ class CreateDocumentServcice {
     }
     
     emission = HandleDate(emission)
-    console.log(emission)
 
     if(compareAsc(parseISO(emission), new Date()) === 1) {
       throw new Error("a data de emissão não pode ser posterior à data atual")
     }
-
-    console.log(emission)
-
 
     if(due_date) {
       due_date = HandleDate(due_date)

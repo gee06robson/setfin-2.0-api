@@ -8,12 +8,16 @@ interface IUpdateDocument {
   number: string
   emission: string
   due_date?: string | null
-  value: string
+  value: number
   status: boolean
 }
 
 class UpdateDocumentService {
   async execute({ id, number, emission, due_date, value, status } : IUpdateDocument) {
+
+    if(value <= 0) {
+      throw new Error("o valor do documento não pode ser igual ou menor que zero")
+    }
 
     emission = HandleDate(emission)
     

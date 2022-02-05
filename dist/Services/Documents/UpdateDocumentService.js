@@ -53,6 +53,9 @@ var UpdateDocumentService = /** @class */ (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
+                        if (value <= 0) {
+                            throw new Error("o valor do documento não pode ser igual ou menor que zero");
+                        }
                         emission = (0, ultils_1.HandleDate)(emission);
                         if ((0, date_fns_1.compareAsc)((0, date_fns_1.parseISO)(emission), new Date()) === 1) {
                             throw new Error("a data de emissão não pode ser posterior à data atual");
