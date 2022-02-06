@@ -54,8 +54,8 @@ var CreateDocumentServcice = /** @class */ (function () {
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
-                        if (value <= 0) {
-                            throw new Error("o valor do documento não pode ser igual ou menor que zero");
+                        if (number.length === 0) {
+                            throw new Error("o número do documento não pode ser vazio");
                         }
                         if (code.length !== 6 && code.length !== 11 && code.length !== 14) {
                             throw new Error("o código do credor deve conter 6, 11 ou 14 caracteres");
@@ -72,6 +72,9 @@ var CreateDocumentServcice = /** @class */ (function () {
                             if ((0, compareDesc_1.default)((0, date_fns_1.parseISO)(emission), (0, date_fns_1.parseISO)(due_date)) !== 1) {
                                 throw new Error("a data de vencimento não pode ser inferior ou igual a data de emissão");
                             }
+                        }
+                        if (value <= 0) {
+                            throw new Error("o valor do documento não pode ser igual ou menor que zero");
                         }
                         return [4 /*yield*/, Prisma_1.default.creditor.findFirst({
                                 where: {

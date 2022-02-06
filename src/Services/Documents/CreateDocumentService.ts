@@ -29,8 +29,8 @@ interface DocumentData {
 class CreateDocumentServcice {
   async execute({ code, name, number, emission, due_date, value, status = false, unit_id, user_id } : IDocument) {
     
-    if(value <= 0) {
-      throw new Error("o valor do documento não pode ser igual ou menor que zero")
+    if(number.length === 0) {
+      throw new Error("o número do documento não pode ser vazio")
     }
 
     if(code.length !== 6 && code.length !== 11 && code.length !== 14) {
@@ -54,6 +54,10 @@ class CreateDocumentServcice {
         throw new Error("a data de vencimento não pode ser inferior ou igual a data de emissão")
       }
 
+    }
+
+    if(value <= 0) {
+      throw new Error("o valor do documento não pode ser igual ou menor que zero")
     }
     
     let checkCreditor = await prismaClient.creditor.findFirst({

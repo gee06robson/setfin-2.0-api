@@ -53,6 +53,9 @@ var UpdateDocumentService = /** @class */ (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
+                        if (number.length === 0) {
+                            throw new Error("o número do documento não pode ser vazio");
+                        }
                         if (value <= 0) {
                             throw new Error("o valor do documento não pode ser igual ou menor que zero");
                         }

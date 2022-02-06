@@ -15,6 +15,10 @@ interface IUpdateDocument {
 class UpdateDocumentService {
   async execute({ id, number, emission, due_date, value, status } : IUpdateDocument) {
 
+    if(number.length === 0) {
+      throw new Error("o número do documento não pode ser vazio")
+    }
+    
     if(value <= 0) {
       throw new Error("o valor do documento não pode ser igual ou menor que zero")
     }
