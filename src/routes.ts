@@ -17,6 +17,7 @@ import { CreateTaxesController } from "./Controllers/Taxes/CreateTaxesController
 import { ListTaxesController } from "./Controllers/Taxes/ListTaxesController"
 import { AddTaxesDocumentController } from "./Controllers/Taxes/AddTaxesDocumentController"
 import { RemoveTaxesDocumentController } from "./Controllers/Taxes/RemoveTaxesDocumentController"
+import { DeleteDocumentController } from "./Controllers/Document/DeleteDocumentController"
 
 
 const router = Router()
@@ -34,6 +35,7 @@ router.post("/documents/filter", ensureAuthenticated, new FilterDocumentsControl
 router.post("/document/update", ensureAuthenticated, new UpdateDocumentController().handle)
 router.get("/select_document/:id", ensureAuthenticated, new SelectDocumentController().handle)
 router.post("/taxe", ensureAuthenticated, new CreateTaxesController().handle)
+router.post("/document/delete", ensureAuthenticated, new DeleteDocumentController().handle)
 router.get("/list/taxes/", ensureAuthenticated, new ListTaxesController().handle)
 router.post("/taxes/document/", ensureAuthenticated, new AddTaxesDocumentController().handle)
 router.post("/taxe/remove/document", ensureAuthenticated, new RemoveTaxesDocumentController().handle)

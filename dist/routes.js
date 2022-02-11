@@ -19,6 +19,7 @@ var CreateTaxesController_1 = require("./Controllers/Taxes/CreateTaxesController
 var ListTaxesController_1 = require("./Controllers/Taxes/ListTaxesController");
 var AddTaxesDocumentController_1 = require("./Controllers/Taxes/AddTaxesDocumentController");
 var RemoveTaxesDocumentController_1 = require("./Controllers/Taxes/RemoveTaxesDocumentController");
+var DeleteDocumentController_1 = require("./Controllers/Document/DeleteDocumentController");
 var router = (0, express_1.Router)();
 exports.router = router;
 router.post("/user", new AuthenticateUserController_1.AuthenticateUserController().handle);
@@ -34,6 +35,7 @@ router.post("/documents/filter", ensureAuthenticated_1.ensureAuthenticated, new 
 router.post("/document/update", ensureAuthenticated_1.ensureAuthenticated, new UpdateDocumentController_1.UpdateDocumentController().handle);
 router.get("/select_document/:id", ensureAuthenticated_1.ensureAuthenticated, new SelectDocumentController_1.SelectDocumentController().handle);
 router.post("/taxe", ensureAuthenticated_1.ensureAuthenticated, new CreateTaxesController_1.CreateTaxesController().handle);
+router.post("/document/delete", ensureAuthenticated_1.ensureAuthenticated, new DeleteDocumentController_1.DeleteDocumentController().handle);
 router.get("/list/taxes/", ensureAuthenticated_1.ensureAuthenticated, new ListTaxesController_1.ListTaxesController().handle);
 router.post("/taxes/document/", ensureAuthenticated_1.ensureAuthenticated, new AddTaxesDocumentController_1.AddTaxesDocumentController().handle);
 router.post("/taxe/remove/document", ensureAuthenticated_1.ensureAuthenticated, new RemoveTaxesDocumentController_1.RemoveTaxesDocumentController().handle);
