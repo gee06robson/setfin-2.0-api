@@ -63,7 +63,7 @@ var ListDocumentsService = /** @class */ (function () {
                                             code: true,
                                             name: true
                                         },
-                                    }
+                                    },
                                 },
                                 where: {
                                     units: {
@@ -80,7 +80,21 @@ var ListDocumentsService = /** @class */ (function () {
                             })];
                     case 1:
                         documents = _b.sent();
-                        return [2 /*return*/, documents];
+                        return [2 /*return*/, documents.map(function (response) {
+                                return {
+                                    id: response.id,
+                                    creditor_id: response.creditor_id,
+                                    number: response.number,
+                                    emission: response.emission,
+                                    due_date: response.due_date,
+                                    value: response.value,
+                                    status: response.status,
+                                    created_at: response.created_at,
+                                    updated_at: response.updated_at,
+                                    creditor: { code: response.creditor.code, name: response.creditor.name },
+                                    searchEngine: response.number + " " + response.value + " " + Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(response.value)) + " " + response.creditor.code + " " + response.creditor.name
+                                };
+                            })];
                     case 2:
                         e_1 = _b.sent();
                         if (e_1 instanceof client_1.Prisma.PrismaClientKnownRequestError) {

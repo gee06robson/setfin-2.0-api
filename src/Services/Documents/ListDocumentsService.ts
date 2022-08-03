@@ -21,7 +21,7 @@ class ListDocumentsService {
               code: true,
               name: true
             },
-          }
+          },
         },
         where: {
           units: {
@@ -37,7 +37,21 @@ class ListDocumentsService {
         take
       })
   
-      return documents
+      return documents.map(response => {
+        return {
+          id: response.id,
+          creditor_id: response.creditor_id,
+          number: response.number,
+          emission: response.emission,
+          due_date: response.due_date,
+          value: response.value,
+          status: response.status,
+          created_at: response.created_at,
+          updated_at: response.updated_at,
+          creditor: { code: response.creditor.code, name: response.creditor.name },
+          searchEngine: `${response.number} ${response.value} ${Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(Number(response.value))} ${response.creditor.code} ${response.creditor.name}`
+        }
+      })
 
     } catch (e) {
       
